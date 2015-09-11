@@ -8,8 +8,7 @@ public class DictionaryBuilder {
     TreeMap<String, TreeMap<String, Integer>> dictionary;
     File[] files;
 
-    public DictionaryBuilder(TreeMap<String, TreeMap<String, Integer>> dictionary, File[] files) {
-        this.dictionary = dictionary;
+    public DictionaryBuilder(File[] files) {
         this.files = files;
     }
 
@@ -23,8 +22,10 @@ public class DictionaryBuilder {
 
         for (int documentNumber = 0; documentNumber < files.length; documentNumber++) {
             br = new BufferedReader(new FileReader(files[documentNumber]));
+
             try {
                 String strLine = null;
+
                 while ((strLine = br.readLine()) != null) {
                     strLine.toLowerCase();
                     tz = new StringTokenizer(strLine);

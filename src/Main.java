@@ -14,5 +14,7 @@ public class Main {
         for (int i = 0; i < fileChooser.files.length; i++) {
             System.out.println(fileChooser.files[i].getName());
         }
+
+        New_Dictionary_Builder new_dictionary_builder = new New_Dictionary_Builder(fileChooser.files);
     }
 }

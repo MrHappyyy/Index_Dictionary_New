@@ -12,7 +12,7 @@ public class FileChooser extends JFrame implements ActionListener {
     JFileChooser fileChoser;
     JScrollPane scroll;
 
-    public static File[] files;
+    public File[] files;
 
     public FileChooser(){
         super("FileChooserApp");
