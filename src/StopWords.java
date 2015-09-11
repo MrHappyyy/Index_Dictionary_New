@@ -8,9 +8,7 @@ public class StopWords {
     static {
         try {
             InputStream is = new FileInputStream("stopwords_ru.txt");
-
             InputStreamReader isr = new InputStreamReader(is);
-
             BufferedReader br = new BufferedReader(isr);
 
             String line;
@@ -31,7 +29,7 @@ public class StopWords {
         List<String> res = new ArrayList<String>();
         for(String token: tokens){
             if(words.contains(token)){
-                //System.out.println("Stop word: " + token);
+                System.out.println("Stop word: " + token);
             } else {
                 res.add(token);
             }
