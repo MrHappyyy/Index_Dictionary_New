@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -10,7 +11,7 @@ public class Test {
 
     public static void main(String[] args) throws IOException{
 
-        ArrayList<String> words = new ArrayList<>();
+        List<String> words = new ArrayList<String>();
         String line = "";
 
         Scanner file = new Scanner(new File("C:\\Test\\Test.txt"));
@@ -24,8 +25,9 @@ public class Test {
 
         String[] wordsString = line.split("[,.;/:!?\\s]+");
 
+
         for (int i = 0; i < wordsString.length; i++) {
-            words.add(wordsString[i]);
+            //words.add(wordsString[i]);
             System.out.print(wordsString[i] + "|");
         }
         System.out.println();
