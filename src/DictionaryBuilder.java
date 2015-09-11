@@ -1,68 +1,19 @@
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.util.StringTokenizer;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.TreeMap;
 
 public class DictionaryBuilder {
-    TreeMap<String, TreeMap<String, Integer>> dictionary;
-    File[] files;
+    private File[] files;
+    private TreeMap<String, TreeMap<String, Integer>> dictionary;
 
     public DictionaryBuilder(File[] files) {
         this.files = files;
     }
 
-    public void readFileAsList() throws Exception {
+    public TreeMap readFileAsList() {
 
-        BufferedReader br;
-        StringTokenizer tz;
-        String word = "";
-        int wordsCount = 0;
-        int allWordsCounter = 0;
-
-        for (int documentNumber = 0; documentNumber < files.length; documentNumber++) {
-            br = new BufferedReader(new FileReader(files[documentNumber]));
-
-            try {
-                String strLine = null;
-
-                while ((strLine = br.readLine()) != null) {
-                    strLine.toLowerCase();
-                    tz = new StringTokenizer(strLine);
-
-                    while(tz.hasMoreTokens()) {
-                        word = tz.nextToken();
-                        wordsCount += countWordsInList(word);
-                        //dictionary.put(word, wordsCount);
-                        allWordsCounter += wordsCount;
-                    }
-                }
-            } finally {
-                br.close();
-            }
-        }
+        return dictionary;
     }
-
-    private int countWordsInList(String word) {
-        if (dictionary.containsKey(word)) {
-            dictionary.get(word);
-            return 1;
-        }
-
-        return 0;
-    }
-
-//    private List<String> getMainWords(List <String> wordsList){
-//        List<String> tokens = new ArrayList<String>();
-//
-//        for ( String text : wordsList) {
-//            StringTokenizer tz = new StringTokenizer(text);
-//            while(tz.hasMoreTokens()) {
-//                tokens.add(tz.nextToken());
-//            }
-//        }
-//
-//
-//        return StopWords.removeStopWords(tokens);
-//    }
 }
