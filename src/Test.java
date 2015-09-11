@@ -10,49 +10,28 @@ public class Test {
 
     public static void main(String[] args) throws IOException{
 
-        ArrayList<String> list = new ArrayList<>();
         ArrayList<String> words = new ArrayList<>();
-        
+        String line = "";
+
         Scanner file = new Scanner(new File("C:\\Test\\Test.txt"));
 
         while (file.hasNext())
-            list.add(file.nextLine());
+            line += file.nextLine();
 
         file.close();
 
-        for(int i = 0; i < list.size(); i++){
-            System.out.println(list.get(i));
+        System.out.println(line);
 
+        String[] wordsString = line.split("[,.;/:!?\\s]+");
+
+        for (int i = 0; i < wordsString.length; i++) {
+            words.add(wordsString[i]);
+            System.out.print(wordsString[i] + "|");
         }
+        System.out.println();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*        int k = 50, i = 0;
-        String[] s = new String[k];
-        Scanner in = new Scanner(new File("C:\\Test\\Test.txt"));
-        while(in.hasNext()) {
-            s[i] = in.nextLine() + "\r\n";
-            i++;
-            System.out.println(s);
+        for(int i = 0; i < words.size(); i++){
+            System.out.print(words.get(i) + "|");
         }
-
-        for (int j = 0; j < s.length; j++) {
-            System.out.println(s[j]);
-        }
-        in.close();*/
     }
 }
