@@ -1,6 +1,7 @@
+import java.io.FileNotFoundException;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         FileChooser fileChooser = new FileChooser();
 
         int res = 0;
