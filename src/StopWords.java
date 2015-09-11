@@ -7,7 +7,7 @@ public class StopWords {
 
     static {
         try {
-            InputStream is = new FileInputStream("stopwords_ru.txt");
+            InputStream is = new FileInputStream("C:\\programing\\Java\\Проекты\\IdeaProjects\\Index_Dictionary_New\\stopwords.txt");
             InputStreamReader isr = new InputStreamReader(is);
             BufferedReader br = new BufferedReader(isr);
 
@@ -26,15 +26,17 @@ public class StopWords {
 
     public static List<String> removeStopWords(List<String> tokens){
         List<String> res = new ArrayList<String>();
+        String stopWords = "Стоп слова:/";
 
         for(String token: tokens){
 
             if(words.contains(token)){
-
+                stopWords += token +"/";
             } else {
                 res.add(token);
             }
         }
+        //System.out.println(stopWords);
         return res;
     }
 }

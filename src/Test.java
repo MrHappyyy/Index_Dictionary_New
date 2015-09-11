@@ -9,9 +9,37 @@ import java.util.Scanner;
  */
 public class Test {
 
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) {
 
-        List<String> words = new ArrayList<String>();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       /* List<String> words = new ArrayList<String>();
         String line = "";
 
         Scanner file = new Scanner(new File("C:\\Test\\Test.txt"));
@@ -34,6 +62,6 @@ public class Test {
 
         for(int i = 0; i < words.size(); i++){
             System.out.print(words.get(i) + "|");
-        }
+        }*/
     }
 }

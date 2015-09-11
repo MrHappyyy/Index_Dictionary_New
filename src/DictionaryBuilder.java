@@ -15,34 +15,28 @@ public class DictionaryBuilder {
 
         for (int i = 0; i < files.length; i++) {
             List<String> words = new ArrayList<String>();
-            List<String> newWords = new ArrayList<String>();
             String wordLine = "";
             String[] word;
 
             Scanner file = new Scanner(new FileReader(files[i]));
 
             while (file.hasNext())
-                wordLine += file.nextLine();
+                wordLine += file.nextLine().toLowerCase();
             file.close();
 
-            word = wordLine.split("[\\s]+");
+            word = wordLine.split("[?!*,-.\\;/:)(+\\s]+");
 
             for (int j = 0; j < word.length; j++) {
                 words.add(word[j]);
             }
 
+            StopWords stopWords = new StopWords();
+            words = stopWords.removeStopWords(words);
+
             for (int j = 0; j < words.size(); j++) {
                 System.out.print(words.get(j) + "/");
             }
-            System.out.println();
 
-            StopWords stopWords = new StopWords();
-            newWords = stopWords.removeStopWords(words);
-
-            for (int j = 0; j < newWords.size(); j++) {
-                System.out.print(newWords.get(j) + "/");
-            }
-            System.out.println();
         }
         return dictionary;
     }
