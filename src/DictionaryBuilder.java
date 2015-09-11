@@ -25,14 +25,14 @@ public class DictionaryBuilder {
                 wordLine += file.nextLine();
             file.close();
 
-            word = wordLine.split("[\\,.)(*+-;/:!?\\s]+");
+            word = wordLine.split("[\\s]+");
 
             for (int j = 0; j < word.length; j++) {
                 words.add(word[j]);
             }
 
             for (int j = 0; j < words.size(); j++) {
-                System.out.print(words.get(j) + " ");
+                System.out.print(words.get(j) + "/");
             }
             System.out.println();
 
@@ -40,7 +40,7 @@ public class DictionaryBuilder {
             newWords = stopWords.removeStopWords(words);
 
             for (int j = 0; j < newWords.size(); j++) {
-                System.out.print(newWords.get(j) + " ");
+                System.out.print(newWords.get(j) + "/");
             }
             System.out.println();
         }
