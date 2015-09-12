@@ -9,7 +9,7 @@ public class DictionaryBuilder {
         this.files = files;
     }
 
-    public Map<String, HashMap<String, Integer>> readFileAsList() throws IOException {
+    public void readFileAsList() throws IOException {
         BufferedReader br;
         StringTokenizer tz;
 
@@ -24,7 +24,7 @@ public class DictionaryBuilder {
                 wordLine += file.nextLine().toLowerCase();
             file.close();
 
-            word = wordLine.split("[?!*,-.\\;/:)(+\\s]+");
+            word = wordLine.split("[?!*,-.\"_\"\\;/:)(+\\s]+");
 
             for (int j = 0; j < word.length; j++) {
                 words.add(word[j]);
@@ -38,7 +38,6 @@ public class DictionaryBuilder {
             }
             write(words, files[i].getName());
         }
-        return dictionary;
     }
 
     private void write(List<String> words, String documentsName) {
@@ -47,7 +46,19 @@ public class DictionaryBuilder {
             HashMap<String, Integer> hashMap = new HashMap<String,Integer>();
 
             if (dictionary.containsKey(words.get(i))) {
-                System.out.println(dictionary.get(words.get(i)));
+                hashMap = dictionary.get(words.get(i));
+                int countWords;
+
+                if (hashMap.containsKey(documentsName)) {
+                    countWords = hashMap.get(documentsName);
+                    countWords += 1;
+                    hashMap.remove(documentsName);
+                    hashMap.put(documentsName, countWords);
+                } else {
+                    hashMap.put(documentsName, 1);
+                }
+                dictionary.remove(words.get(i));
+                dictionary.put(words.get(i), hashMap);
             } else {
                 hashMap.put(documentsName, 1);
                 dictionary.put(words.get(i), hashMap);

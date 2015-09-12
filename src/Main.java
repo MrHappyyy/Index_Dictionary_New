@@ -1,3 +1,4 @@
+import javax.swing.text.html.parser.Entity;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
@@ -17,6 +18,12 @@ public class Main {
         System.out.println();
 
         DictionaryBuilder dictionaryBuilder = new DictionaryBuilder(fileChooser.files);
-        dictionary = dictionaryBuilder.readFileAsList();
+
+
+        /*dictionary = dictionaryBuilder.readFileAsList();
+
+        for (Map.Entry entry : dictionary.entrySet()) {
+            System.out.println("Слово: " + entry.getKey() + "   Документ: " + entry.getValue());
+        }*/
     }
 }
