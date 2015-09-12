@@ -1,12 +1,15 @@
+
 import java.io.*;
 import java.util.*;
+import java.text.SimpleDateFormat;
 
 public class DictionaryBuilder {
     private File[] files;
     private Map<String, HashMap<String, Integer>> dictionary = new TreeMap<String, HashMap<String, Integer>>();
 
-    public DictionaryBuilder(File[] files) {
+    public DictionaryBuilder(File[] files) throws IOException {
         this.files = files;
+        readFileAsList();
     }
 
     public void readFileAsList() throws IOException {
@@ -33,9 +36,9 @@ public class DictionaryBuilder {
             StopWords stopWords = new StopWords();
             words = StopWords.removeStopWords(words);
 
-            for (int j = 0; j < words.size(); j++) {
+            /*for (int j = 0; j < words.size(); j++) {
                 System.out.print(words.get(j) + "/");
-            }
+            }*/
             write(words, files[i].getName());
         }
     }
@@ -63,6 +66,35 @@ public class DictionaryBuilder {
                 hashMap.put(documentsName, 1);
                 dictionary.put(words.get(i), hashMap);
             }
+        }
+        writeToFile();
+    }
+
+    public void writeToFile() {
+        try {
+            Date date = new Date();
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.mm.yyy hh,mm");
+
+            String fileName = simpleDateFormat.format(date) + " Dictionary.txt";
+            File file = new File(fileName);
+
+            if (!file.exists())
+                file.createNewFile();
+
+            PrintWriter pout = new PrintWriter(file.getAbsoluteFile());
+
+            try {
+                String string;
+
+                for (Map.Entry entry : dictionary.entrySet()) {
+                    string = "Слово: " + entry.getKey() + "   Документ: " + entry.getValue() + "\n";
+                    pout.println(string);
+                }
+            } finally {
+                pout.close();
+            }
+        }catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
